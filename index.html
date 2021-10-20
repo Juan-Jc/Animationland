@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<style>
+		/* contador */
+		body {
+			margin: 0;
+			height: 100vh;
+			width: 100%;
+			display: grid;
+			place-items: center;
+			counter-reset: score;
+		}
+		input[type="checkbox"] {
+			appearance: none;
+			cursor: pointer;
+			height: 50px;
+			margin: 0;
+			position: relative;
+			top: 0;
+			width: 80px;
+			z-index: 2;
+		}
+		input:checked {
+			counter-increment: score;
+		}
+		.total::after {
+			content: counter(score);
+		}
+		/* maquetacion y apilamiento */
+		.phone {
+			width:300px;
+			height: 600px;
+			position:relative;
+			border: 8px solid black;
+			border-radius: 40px;
+			background: lightblue;
+			box-shadow:	0 19px 38px #333;
+			overflow: hidden;
+		}
+		.layer-1 {
+			position: absolute;
+			z-index: 1;
+			height: 450px;
+			width: 80px;
+			/* background: tan; */
+			bottom: 0;
+			right: 60px;
+			animation-name: layer;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+		@keyframes layer {
+			0%{
+				bottom: 0;
+			}
+			25%{
+				bottom: -8px;
+			}
+			50%{
+				bottom: -80px;
+			}
+			100%{
+				bottom: 0;
+			}
+		}
+		
+		.layer-2 {
+			position: absolute;
+			z-index: 2;
+			height: 450px;
+			width: 80px;
+			/* background: white; */
+			bottom: 0;
+			left: 60px;
+			animation-name: layer;
+			animation-duration: 3s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+
+		}
+		.layer-3 {
+			position: absolute;
+			z-index: 3;
+			height: 400px;
+			width: 220px;
+			left: 0;
+			right: 0;
+			bottom: -8px;
+			margin: 0 auto;
+			background-color: rgb(95, 55, 55);
+			border-radius: 20px;
+			border-top: 8px solid green;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+		.layer-4 {
+			position: absolute;
+			z-index: 4;
+			height: 300px;
+			width: 80px;
+			/* background: white; */
+			bottom: 0;
+			left: 30px;
+			animation-name: layer;
+			animation-duration: 1s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+		.layer-5 {
+			position: absolute;
+			z-index: 5;
+			height: 250px;
+			width: 180px;
+			bottom: -8px;
+			background-color: rgb(95, 55, 55);
+			border-radius: 20px;
+			border-top: 8px solid green;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+		.layer-6 {
+			position: absolute;
+			z-index: 6;
+			height: 250px;
+			width: 80px;
+			/* background: white; */
+			bottom: 0;
+			right: 30px;
+			animation-name: layer;
+			animation-duration: 1.5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+		.layer-7 {
+			position: absolute;
+			z-index: 7;
+			height: 200px;
+			width: 140px;
+			bottom: -8px;
+			right: 0;
+			background-color: rgb(95, 55, 55);
+			border-radius: 20px;
+			border-top: 8px solid green;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+		.layer-8 {
+			position: absolute;
+			z-index: 8;
+			height: 120px;
+			width: 200px;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: yellowgreen;
+			border-radius: 30px;
+		}
+		.layer-9 {
+			position: absolute;
+			z-index: 9;
+			height: 80px;
+			width: 100px;
+			left: 0;
+			bottom: 0;
+			border-radius: 40px;
+			background: whitesmoke;
+		}
+		.layer-10 {
+			position: absolute;
+			z-index: 10;
+			height: 80px;
+			width: 100px;
+			right: 0;
+			bottom: 0;
+			border-radius: 40px;
+			background: whitesmoke;
+		}
+		/* dibujando personajes */
+		.left-ear--outer {
+			background: white;
+			border-radius: 90%;
+			width: 20px;
+			height: 50px;
+			position: absolute;
+			left: 10px;
+			top:0;
+		}
+		.left-ear--inner {
+			background: hotpink;
+			border-radius: 90%;
+			width: 10px;
+			height: 50px;
+			position: absolute;
+			left: 15px;
+			top: 8px;
+		}
+		.right-ear--outer {
+			background: white;
+			border-radius: 90%;
+			width: 20px;
+			height: 50px;
+			position: absolute;
+			right: 10px;
+			top:0;
+		}
+		.right-ear--inner {
+			background: hotpink;
+			border-radius: 90%;
+			width: 10px;
+			height: 50px;
+			position: absolute;
+			right: 15px;
+			top: 8px;
+		}
+		.head {
+			width: 80px;
+			height: 80px;
+			background: white;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			top: 30px;
+		}
+		.head__eye {
+			background: #333;
+			border-radius: 50%;
+			width: 4px;
+			height: 8px;
+			position: absolute;
+			top: 12px;
+			animation-name: blink;
+			animation-duration: 2s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes blink {
+			0% {
+				height: 8px;
+			}
+			5% {
+				transform: translate(0px,4px);
+				height: 1px;
+			}
+			10% {
+				transform: translate(0px,0px);
+				height: 8px;
+			}
+		}
+		.head__eye--left {
+			left: 30px;
+		}
+		.head__eye--right {
+			right: 30px;
+		}
+		h1,h3{
+			text-align: center;
+			color: rgb(122, 53, 53);
+			font-family: 'Courier New', Courier, monospace;
+		}
+	</style>
+</head>
+<body>
+	<!-- maquetacion, contenedor y apilamiento de capas -->
+	<div class="phone">
+		<div class="layer-1">
+			<input type="checkbox" name="checkbox1">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer-2">
+			<input type="checkbox" name="checkbox2">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer-3"></div>
+		<div class="layer-4">
+			<input type="checkbox" name="checkbox3">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer-5"></div>
+		<div class="layer-6">
+			<input type="checkbox" name="checkbox4">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer-7"></div>
+		<div class="layer-8"></div>
+		<div class="layer-9"></div>
+		<div class="layer-10"></div>
+		<h1>Animation Land</h1>
+		<h3 class="total">Score:</h3>
+	</div>
+	<script>
+		let bunny1 = document.querySelector('.layer-1');
+		let bunny2 = document.querySelector('.layer-2')
+		let bunny3 = document.querySelector('.layer-4')
+		let bunny4 = document.querySelector('.layer-6')
+		let checkbox1 = document.querySelector('input[name=checkbox1]');
+		let checkbox2 = document.querySelector('input[name=checkbox2]');
+		let checkbox3 = document.querySelector('input[name=checkbox3]');
+		let checkbox4 = document.querySelector('input[name=checkbox4]');
+		function hold (b,bunny) {
+			b.addEventListener('change', ()=>{
+				if(b.checked){
+				bunny.style.animationIterationCount = 'initial';
+			}else{
+				bunny.style.animationIterationCount = 'infinite';
+			}
+			})
+		}
+		hold(checkbox1,bunny1);
+		hold(checkbox2,bunny2);
+		hold(checkbox3,bunny3);
+		hold(checkbox4,bunny4);
+	</script>
+</body>
+</html>
